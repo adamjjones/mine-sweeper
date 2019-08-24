@@ -5,6 +5,9 @@ export class Gameboard extends Component {
   constructor() {
     super()
     this.getCurrentGameState = this.getCurrentGameState.bind(this)
+    this.postAction = this.postAction.bind(this)
+    this.clickHandler = this.clickHandler.bind(this)
+
     this.state = {
       board: [],
       id: 0
@@ -21,13 +24,21 @@ export class Gameboard extends Component {
       url: 'http://minesweeper-api.herokuapp.com/games'
     }).then(result => {
       // console.log('3')
-      this.setState({
-        board: result.data.board,
-        id: result.data.id
-      })
+      this.setState(Object.assign(this.state, result.data))
+      // this.setState({
+      //   board: result.data.board,
+      //   id: result.data.id
+      // })
     })
   }
 
+  clickHandler(event) {
+    event.persist()
+    const action = event.ctrlKey ? 'flag' : 'check'
+    const row = event.target.getAttribute('row')
+    const col = event.target.getAttribute('col')
+    this.postAction(action, row, col)
+  }
   postAction(action, row, col) {
     Axios({
       method: 'post',
@@ -38,12 +49,14 @@ export class Gameboard extends Component {
         col: col
       }
     }).then(result => {
-      this.setState({
-        board: result.data.board,
-        id: result.data.id,
-        state: result.data.state,
-        mines: result.data.mines
-      })
+      console.log('result', result)
+      this.setState(Object.assign(this.state, result.data))
+      // this.setState({
+      //   board: result.data.board,
+      //   id: result.data.id,
+      //   state: result.data.state,
+      //   mines: result.data.mines
+      // })
     })
   }
 
@@ -54,12 +67,13 @@ export class Gameboard extends Component {
       url: `http://minesweeper-api.herokuapp.com/games/${this.state.id}`
     }).then(result => {
       console.log(result)
-      this.setState({
-        id: result.data.id,
-        board: result.data.board,
-        state: result.data.state,
-        mines: result.data.mines
-      })
+      this.setState(Object.assign(this.state, result.data))
+      // this.setState({
+      //   id: result.data.id,
+      //   board: result.data.board,
+      //   state: result.data.state,
+      //   mines: result.data.mines
+      // })
     })
   }
 
@@ -73,6 +87,8 @@ export class Gameboard extends Component {
         countCell++
         return (
           <td
+            onClick={this.clickHandler}
+            onContextMenu={this.clickHandler}
             key={`cell-${countCell}`}
             row={countRow}
             col={countCell}
@@ -95,11 +111,17 @@ export class Gameboard extends Component {
   render() {
     // console.log('2')
     return (
-      <div>
-        <table className="table">
-          <tbody>{this.createCell()}</tbody>
-        </table>
-        <button onClick={this.getCurrentGameState}>Get Game State</button>
+      <div id="gameboard">
+        <div id="game">
+          <h1>{this.state.state}</h1>
+          <table className="table">
+            <tbody>{this.createCell()}</tbody>
+          </table>
+          <button onClick={this.getCurrentGameState}>Get Game State</button>
+        </div>
+        <div id="debug">
+          <pre>{JSON.stringify(this.state, ' ', 2)}</pre>
+        </div>
       </div>
     )
   }
