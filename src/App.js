@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import HelloWorld from './components/HelloWorld'
+import Gameboard from './components/Gameboard'
+import Populateboard from './components/Populateboard'
 
 class App extends Component {
   render() {
-    return <HelloWorld />
+    return <Gameboard />
   }
 }
 
