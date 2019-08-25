@@ -9,32 +9,79 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  background-size: 100% 100%;
+  background-image: url('bomb.svg');
+}
+#game-message {
+  display: flex;
+  justify-content: center;
 }
 
 .table {
-  margin-left: 100px;
+  display: flex;
+  justify-content: center;
 }
 #gameboard {
   display: flex;
   flex-direction: row;
 }
 #game {
-  width: 60%;
+  width: 100%;
 }
-#debug {
+
+/* #debug {
   width: 30%;
   max-height: 600px;
-  overflow-y: scroll;
-}
+  overflow-y: scroll; */
+/* } */
 
-.row {
+/* .row {
   width: 30px;
-  height: 30px;
-}
+  height: 30px; */
+/* } */
 
 .cell {
-  border-style: 2px solid black;
+  /* border-style: 2px solid #444444; */
   background-color: #bbbbbb;
+  box-shadow: 5px 5px 5px 5px #aaaaaa;
+  margin: 5px;
+  text-align: center;
   width: 50px;
   height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  opacity: 0.8;
+}
+
+.style-1 {
+  text-align: center;
+  color: #666666;
+}
+
+.style-2 {
+  text-align: center;
+  color: #333333;
+}
+
+.style-3 {
+  text-align: center;
+  color: #000000;
+}
+.style-bomb {
+  text-align: center;
+  color: #ff0000;
+}
+
+.startover {
+  position: absolute;
+  /* display: flex; */
+  padding-top: 35px;
+  top: 45%;
+  left: 35%;
+  opacity: 1;
+  background-color: yellow;
+  /* font-size: 36pt; */
+  width: 200px;
+  height: 80px;
+  text-align: center;
 }
