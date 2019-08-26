@@ -90,27 +90,27 @@ export class Gameboard extends Component {
     switch (value) {
       case 1:
         return (
-          <span class="fa-stack fa-1x style-1">
-            <i className="fa fa-stack-1x fa-square-o"></i>
-            <strong className="fa fa-stack-1x">1</strong>
+          <span class="fa-stack fa-2x style-1">
+            <i className="fa fa-stack-2x fa-square-o"></i>
+            <strong className="fa fa-stack-2x">1</strong>
           </span>
         )
       case 2:
         return (
-          <span class="fa-stack fa-1x style-2">
-            <i className="fa fa-stack-1x fa-square-o"></i>
-            <strong className="fa fa-stack-1x">2</strong>
+          <span class="fa-stack fa-2x style-2">
+            <i className="fa fa-stack-2x fa-square-o"></i>
+            <strong className="fa fa-stack-2x">2</strong>
           </span>
         )
       case 3:
         return (
-          <span class="fa-stack fa-1x style-3">
-            <i className="fa fa-stack-1x fa-square-o"></i>
-            <strong className="fa fa-stack-1x">3</strong>
+          <span class="fa-stack fa-2x style-3">
+            <i className="fa fa-stack-2x fa-square-o"></i>
+            <strong className="fa fa-stack-2x">3</strong>
           </span>
         )
       case '*':
-        return <i className="fa fa-bomb style-bomb"></i>
+        return <i className="fa fa-bomb fa-2x style-bomb"></i>
     }
     return value
   }
@@ -149,7 +149,7 @@ export class Gameboard extends Component {
       case 'new':
         return 'Here we go!'
       case 'playing':
-        return `Turn #${this.state.turn}`
+        return `Turn #${this.state.turn}. Bombs: ${this.state.mines}`
       case 'lost':
         return 'You lost!'
       case 'won':
@@ -178,9 +178,6 @@ export class Gameboard extends Component {
           </table>
         </div>
         {startOverButton}
-        {/* <div id="debug">
-          <pre>{JSON.stringify(this.state, ' ', 2)}</pre>
-        </div> */}
       </div>
     )
   }

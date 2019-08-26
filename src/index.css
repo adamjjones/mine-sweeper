@@ -74,13 +74,11 @@ body {
 
 .startover {
   position: absolute;
-  /* display: flex; */
   padding-top: 35px;
   top: 45%;
   left: 35%;
   opacity: 1;
-  background-color: yellow;
-  /* font-size: 36pt; */
+  background-color: #666666;
   width: 200px;
   height: 80px;
   text-align: center;
